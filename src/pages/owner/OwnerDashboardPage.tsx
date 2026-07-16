@@ -79,11 +79,19 @@ export function OwnerDashboardPage() {
             <span className="hidden sm:inline">Nouveau fastfood</span>
           </Button>
           <button
-            onClick={logout}
-            className="tap-feedback flex h-11 items-center gap-2 rounded-2xl bg-surface px-4 text-sm font-semibold text-ink-soft shadow-soft hover:text-danger-600"
-          >
-            <LogOut size={16} />
-          </button>
+  onClick={() => {
+    const confirmed = window.confirm(
+      "Êtes-vous sûr de vouloir vous déconnecter ?"
+    );
+
+    if (confirmed) {
+      logout();
+    }
+  }}
+  className="tap-feedback flex h-11 items-center gap-2 rounded-2xl bg-surface px-4 text-sm font-semibold text-ink-soft shadow-soft hover:text-danger-600"
+>
+  <LogOut size={16} />
+</button>
         </div>
       </div>
 
