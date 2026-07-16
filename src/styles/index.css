@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color tokens ---- */
+  --color-canvas: #F1F2F7;
+  --color-canvas-soft: #E8EAF2;
+  --color-surface: #FFFFFF;
+  --color-surface-soft: #F7F8FC;
+
+  --color-ink: #14161F;
+  --color-ink-soft: #6B7080;
+  --color-ink-faint: #A0A4B8;
+
+  --color-navy-950: #0D1533;
+  --color-navy-900: #131E4A;
+  --color-navy-800: #17225C;
+  --color-navy-700: #1F2E78;
+
+  --color-electric-500: #3D5AFB;
+  --color-electric-400: #5B74FF;
+  --color-electric-300: #8CA0FF;
+
+  --color-success-600: #16A34A;
+  --color-success-100: #DCF5E4;
+
+  --color-warn-600: #D97706;
+  --color-warn-100: #FDECD1;
+
+  --color-danger-600: #DC2626;
+  --color-danger-100: #FBE0DF;
+
+  /* ---- Typography ---- */
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ---- Radius ---- */
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+  --radius-4xl: 2.25rem;
+
+  /* ---- Shadows ---- */
+  --shadow-soft: 0 1px 2px rgba(13, 21, 51, 0.04), 0 8px 24px -8px rgba(13, 21, 51, 0.10);
+  --shadow-floating: 0 4px 8px rgba(13, 21, 51, 0.04), 0 24px 48px -12px rgba(19, 30, 74, 0.22);
+  --shadow-pressed: 0 1px 2px rgba(13, 21, 51, 0.06) inset;
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-electric-300);
+    color: var(--color-navy-950);
+  }
+
+  /* Tactile tap feedback — used across POS surface */
+  .tap-feedback {
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+  }
+  .tap-feedback:active {
+    transform: scale(0.96);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tap-feedback,
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  /* subtle scrollbar for the product grid / admin tables */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-faint);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .glass-panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.72));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .navy-gradient {
+    background: linear-gradient(135deg, var(--color-navy-950) 0%, var(--color-navy-800) 55%, var(--color-electric-500) 130%);
+  }
+}
